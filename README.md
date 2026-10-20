@@ -6,6 +6,8 @@ per-file revert, and one-click hand-off to the agent.
 
 Verified against **ZCode 3.16.2**.
 
+![ZCode side panel on the zcode-diff-lens workspace](./screenshot.png)
+
 ## Repository layout
 
 ```
