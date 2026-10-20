@@ -1,6 +1,6 @@
 {
   "name": "diff-lens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cursor-style git change review in a session side panel: cascading status tree with per-folder badges, inline Monaco diff (single- or dual-pane), per-file revert, and one-click hand-off to the agent.",
   "author": { "name": "eddie" },
   "license": "MIT",
