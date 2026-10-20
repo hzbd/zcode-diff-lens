@@ -16,7 +16,7 @@ const POLL_MS = 3000;
 
 export function App() {
   const { app, isConnected, error: connError } = useApp({
-    appInfo: { name: "diff-lens-panel", version: "0.1.6" },
+    appInfo: { name: "diff-lens-panel", version: "0.1.7" },
     capabilities: {},
   });
   const theme = useDocumentTheme();
@@ -149,6 +149,10 @@ export function App() {
   return (
     <div className="app">
       <header className="topbar">
+        <svg className="logo" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7.5" fill="none" stroke="var(--accent)" strokeWidth="2.5" />
+          <path d="M8 13.5 L14 8.5 M16.5 16.5 L21 21" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
         <span className="panel-title" title={status?.projectName ?? undefined}>
           {status?.projectName ? `${status.projectName} - Diff.lens` : "Diff.lens"}
         </span>
