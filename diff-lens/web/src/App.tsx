@@ -16,7 +16,7 @@ const POLL_MS = 3000;
 
 export function App() {
   const { app, isConnected, error: connError } = useApp({
-    appInfo: { name: "diff-lens-panel", version: "0.1.7" },
+    appInfo: { name: "diff-lens-panel", version: "0.1.6" },
     capabilities: {},
   });
   const theme = useDocumentTheme();
