@@ -19,10 +19,7 @@
     "surfaces": [
       {
         "id": "diff-lens",
-        "title": {
-          "en-US": "Diff Lens",
-          "zh-CN": "Diff Lens 变更审查"
-        },
+        "title": "Diff Lens",
         "server": "diff-lens",
         "resourceUri": "ui://diff-lens/panel",
         "availability": "session"

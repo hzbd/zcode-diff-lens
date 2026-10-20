@@ -7,12 +7,6 @@
       "version": "0.1.0",
       "description": "Cursor-style git change review in a session side panel: cascading status tree with per-folder badges, inline Monaco diff (single- or dual-pane), per-file revert, and one-click hand-off to the agent.",
       "displayName": "Diff Lens",
-      "displayName_i18n": {
-        "zh-CN": "Diff Lens 变更审查"
-      },
-      "description_i18n": {
-        "zh-CN": "会话侧栏的 Cursor 风格 Git 变更审查：级联状态文件树、Monaco 行内 diff、单文件还原、一键交给 Agent 审查。"
-      },
       "category": "developer-tools"
     }
   ]

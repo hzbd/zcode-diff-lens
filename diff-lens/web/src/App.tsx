@@ -140,10 +140,10 @@ export function App() {
   };
 
   if (connError) {
-    return <div className="empty error">面板连接失败：{connError.message}</div>;
+    return <div className="empty error">Panel connection failed: {connError.message}</div>;
   }
   if (!isConnected) {
-    return <div className="empty">正在连接宿主…</div>;
+    return <div className="empty">Connecting to host…</div>;
   }
 
   return (
@@ -168,15 +168,15 @@ export function App() {
             )}
           </span>
         )}
-        <button className="ghost" onClick={() => void refresh(true)} title="刷新">
+        <button className="ghost" onClick={() => void refresh(true)} title="Refresh">
           ⟳
         </button>
         <button
           className={sideBySide ? "ghost on" : "ghost"}
           onClick={() => setSideBySide((v) => !v)}
-          title="单栏混排 / 双栏对比切换"
+          title="Toggle inline / side-by-side diff"
         >
-          {sideBySide ? "⬒ 双栏" : "▤ 单栏"}
+          {sideBySide ? "⬒ Split" : "▤ Inline"}
         </button>
       </header>
 
@@ -185,9 +185,9 @@ export function App() {
       <div className="body">
         <aside className="tree-pane">
           {!status?.isRepo ? (
-            <div className="empty small">当前目录不是 Git 仓库</div>
+            <div className="empty small">Not a git repository</div>
           ) : status.entries.length === 0 ? (
-            <div className="empty small">工作区干净，没有变更</div>
+            <div className="empty small">Working tree clean — no changes</div>
           ) : (
             <DiffTree nodes={tree} initialExpanded={expanded} selected={selected} onSelect={setSelected} />
           )}
@@ -213,17 +213,17 @@ export function App() {
                   className={confirming ? "danger" : "ghost"}
                   disabled={busy}
                   onClick={() => void onRevert()}
-                  title="还原该文件到 HEAD（不可恢复）"
+                  title="Revert this file to HEAD (irreversible)"
                 >
-                  {confirming ? "确认还原？" : "↺ 还原"}
+                  {confirming ? "Confirm revert?" : "↺ Revert"}
                 </button>
                 <button
                   className="ghost"
                   disabled={busy || !payload}
                   onClick={() => void onAskAgent()}
-                  title="把该文件的改动发给 Agent 审查"
+                  title="Send this file's changes to the agent for review"
                 >
-                  ✦ 问 Agent
+                  ✦ Ask Agent
                 </button>
               </>
             )}
@@ -232,15 +232,15 @@ export function App() {
             {payloadError ? (
               <div className="empty error">{payloadError}</div>
             ) : payloadLoading ? (
-              <div className="empty">加载 diff…</div>
+              <div className="empty">Loading diff…</div>
             ) : !selected ? (
-              <div className="empty">在左侧选择一个文件查看改动</div>
+              <div className="empty">Select a file on the left to view its changes</div>
             ) : payload?.isBinary ? (
-              <div className="empty">二进制文件，无法展示行级 diff</div>
+              <div className="empty">Binary file — line diff not available</div>
             ) : payload ? (
               <DiffView payload={payload} sideBySide={sideBySide} theme={theme ?? "dark"} />
             ) : (
-              <div className="empty">在左侧选择一个文件查看改动</div>
+              <div className="empty">Select a file on the left to view its changes</div>
             )}
           </div>
         </main>
@@ -248,7 +248,8 @@ export function App() {
 
       {confirming && (
         <div className="banner warn">
-          将不可恢复地丢弃 <code>{selected}</code> 的全部改动（含暂存区）。再次点击“确认还原？”执行，点击其他区域取消。
+          This irreversibly discards all changes in <code>{selected}</code>, including staged
+          ones. Click “Confirm revert?” again to proceed — click elsewhere to cancel.
         </div>
       )}
     </div>

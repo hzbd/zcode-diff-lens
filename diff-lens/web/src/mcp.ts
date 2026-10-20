@@ -75,9 +75,9 @@ export async function askAgentAboutFile(
 ): Promise<void> {
   const ren = p.oldPath ? ` (renamed from ${p.oldPath})` : "";
   const text =
-    `[diff-lens] 请审查工作区中 \`${p.path}\`${ren} 的改动` +
-    `（+${p.additions} / -${p.deletions}${p.isBinary ? "，二进制文件" : ""}）。` +
-    `请指出潜在问题并给出改进建议。`;
+    `[diff-lens] Please review the working-tree changes in \`${p.path}\`${ren}` +
+    ` (+${p.additions} / -${p.deletions}${p.isBinary ? ", binary file" : ""}).` +
+    ` Point out potential issues and suggest improvements.`;
   const res = await app.sendMessage({
     role: "user",
     content: [{ type: "text", text }],
