@@ -1,5 +1,5 @@
 {
-  "name": "zcode-diff-lens",
+  "name": "diff-lens",
   "plugins": [
     {
       "name": "diff-lens",

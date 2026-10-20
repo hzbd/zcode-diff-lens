@@ -22,7 +22,7 @@ npm run smoke    # host-free end-to-end tests
 
 1. Open **Plugin Marketplace → Add → Add Plugin Marketplace** and paste this repo root:
    `/Users/eddie/Projects/nodejs/zcode-diff-lens`
-2. **Personal → zcode-diff-lens → Diff Lens → Install**
+2. **Personal → diff-lens → Diff Lens → Install**
 3. Open a session in any **git repository** — the "Diff Lens" panel appears in the session sidebar; edit a few files and try the tree, the diff, revert and "Ask Agent".
 4. Update flow: change source → `npm run build` → refresh in the marketplace page → update the plugin.
 
