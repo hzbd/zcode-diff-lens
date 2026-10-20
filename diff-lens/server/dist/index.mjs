@@ -33948,7 +33948,7 @@ function truncateSide(text) {
     truncated: true
   };
 }
-var server = new McpServer({ name: "diff-lens", version: "0.1.4" });
+var server = new McpServer({ name: "diff-lens", version: "0.1.6" });
 server.registerTool(
   "git_status",
   {

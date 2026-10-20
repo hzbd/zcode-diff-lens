@@ -11,6 +11,40 @@ A Cursor-style git change review panel for the ZCode session sidebar.
 - **Ask Agent**: posts a summary of the current file's changes into the main chat for agent review.
 - **Zero-token browsing**: panel browsing, refresh and diff are all local MCP tool calls — no model involvement; only "Ask Agent" consumes session tokens.
 
+## Install and try in ZCode
+
+1. Open **Plugin Marketplace → Add → Add Plugin Marketplace** and add this repository as a
+   marketplace, from either:
+   - **GitHub** — paste `https://github.com/hzbd/zcode-diff-lens` (a GitHub `owner/repo`
+     shorthand or any Git URL works too).
+   - **Local checkout** — paste the repository's root folder (the parent of `diff-lens/`);
+     its `marketplace.json` makes it a local dev marketplace.
+2. **Personal → diff-lens → Diff Lens → Install**.
+3. Open a session in any **git repository** — the "Diff Lens" panel appears in the session
+   sidebar; edit a few files and try the tree, the diff, revert and "Ask Agent".
+
+New versions: once the marketplace source changes (a git push, or a local `npm run build`
+for the checkout case), **Refresh** the marketplace and **Update** the plugin. Manage
+installed plugins under **Settings → Plugins**.
+
+## Panel symbols
+
+Status chips (VS Code SCM-style letters, color-coded on each file row and in the topbar counters):
+
+| Chip | Status | Notes |
+| --- | --- | --- |
+| `M` | modified | tracked file with working-tree or staged changes |
+| `A` | added | new file staged into the index |
+| `U` | untracked | new file not yet added to git |
+| `D` | deleted | |
+| `R` | renamed | hover a renamed row to see `oldPath → path` |
+| `!` | conflict | merge/unmerged entries (VS Code SCM convention) |
+
+- **Folders** are tinted by the "worst" status beneath them — `!` > `D` > `M` > `R` > `A` > `U` — and show a badge with the number of changes under that folder, so collapsed folders still reveal where the changes are.
+- **File icons** are language monograms (`TS`, `JS`, `PY`, `<>`, `$`, …) with a neutral `•` fallback for unknown extensions.
+- **Topbar**: `<project> - Diff.lens`, then `⑂ <branch> → <upstream>`, then whole-tree counters `nM nA nU nD nR` (`n!` appears only when conflicts exist). `⟳` forces a refresh; `▤ Inline` / `⬒ Split` switches the diff layout.
+- **Diff toolbar**: `+N −N` counts added/deleted lines; the `binary` tag marks files whose content is never transferred; `truncated` marks a diff side cut at 800,000 chars; `↺ Revert` discards that file's changes (two-step: "Confirm revert?", irreversible); `✦ Ask Agent` posts the file's change summary into the main chat.
+
 ## Architecture (aligned with the actual ZCode host implementation)
 
 ```
@@ -38,7 +72,7 @@ Data path: `webview ⇄ (postMessage / MCP Apps) ⇄ ZCode host ⇄ (stdio JSON-
 
 ```bash
 npm install
-npm run build     # web/dist/index.html + server/dist/index.mjs
+npm run build     # web/dist/index.html + server/dist/index.mjs (both artifacts are committed)
 npm run smoke     # host-free smoke tests (drives every tool and the panel resource on a temp git repo)
 ```
 
@@ -69,14 +103,16 @@ docs/DESIGN.md                   design doc (incl. errata against the original p
 
 - The panel mounts in the session sidebar (`availability: "session"` is the only value the host currently supports); it cannot touch the native file tree.
 - Expanded/selected state lives in panel memory for the session; MCP Apps 2.x has no widgetState API.
-- `node` must be on PATH (true on this machine). For end-user distribution, follow the ios-simulator plugin and run through ZCode Helper (`ELECTRON_RUN_AS_NODE=1`).
+- `node` must be on PATH. For end-user distribution, run the server through ZCode Helper (`ELECTRON_RUN_AS_NODE=1`), like the official ios-simulator plugin does.
 - `ui.surfaces` / MCP Apps are experimental; ZCode or ext-apps SDK upgrades may introduce incompatibilities — test against the target version.
 
-## Host tip: hide the native code preview pane
+## Host tip: the native code preview pane
 
 The right-side code preview pane ("Code viewer") is ZCode host UI, independent of this plugin.
-If you prefer browsing without it, close it once via the close button in its title bar — the
-file-manager layout persists across restarts, so it stays closed until you click a file.
+On ZCode 3.16.2 there is **no button to hide it**. Workaround: drag the splitter between the
+chat area and the side pane until the preview collapses, leaving only the file tree. Caveats:
+clicking a file re-opens the preview, and the collapsed state **resets whenever the side pane
+is toggled closed and reopened** (re-drag needed).
 
 ## License
 

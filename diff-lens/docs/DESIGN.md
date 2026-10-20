@@ -12,7 +12,7 @@ did not match the implementation. Every "host constraint" below comes from the h
 | Declare the service via an `mcp` field in `plugin.json` | The field is `mcpServers`, a map of server name → config | Uses `mcpServers.diff-lens` |
 | `ui.surfaces` points at a `web/dist/index.html` file path | A surface is `server` (must be declared in `mcpServers`) + `resourceUri` (`ui://` prefix, ≤2048 chars); the host fetches a resource with mime `text/html;profile=mcp-app` from that MCP server via `mcp/uiReadResource` and mounts it | The server registers the `ui://diff-lens/panel` resource returning single-file HTML |
 | Default multi-file Vite output | The resource is returned by a single read and the page runs in a sandboxed webview that cannot load external subresources | `vite-plugin-singlefile` inlines all JS/CSS (~4MB artifact < the host's 16MB resource cap) |
-| `widgetState` to persist expansion/selection | ext-apps 2.x has no such API | React component state (lives with the session) + 5s polling of git_status |
+| `widgetState` to persist expansion/selection | ext-apps 2.x has no such API | React component state (lives with the session) + 3s polling of git_status |
 | Vague `bridge.sendMessage` naming | The real API surface is on the `App` instance: `callServerTool` / `readServerResource` / `sendMessage({role, content})` / `updateModelContext` | Implemented against the real signatures |
 | Page → tool call mechanism unexplained | Host wire methods: `mcp/uiCallTool` (plus uiReadResource / uiSubscribeResource / uiSampling / uiRegisterAppTools, etc.) | Wrapped by the SDK; no hand-written protocol |
 | Monaco workers not considered | A sandboxed single-file page cannot load workers the default way | Only Monarch main-thread grammars (basic-languages) are imported; `MonacoEnvironment.getWorker` falls back to a no-op blob worker |
@@ -57,8 +57,9 @@ plugin data directory. This plugin uses `CLAUDE_PLUGIN_ROOT` to locate build art
 
 ```
 useApp() completes the ui/initialize handshake
-  → callServerTool(git_status)          initial load + 5s polling
-  → buildTree(entries)                  folders aggregate count + worst status (U>D>M>R>A>U?)
+  → callServerTool(git_status)          initial load + 3s polling
+  → buildTree(entries)                  folders aggregate count + worst status
+                                        (conflict > deleted > modified > renamed > added > untracked)
   → select a file → callServerTool(get_file_diff_payload)  (cached; invalidated on poll refresh)
   → Monaco createDiffEditor (readOnly, switchable renderSideBySide, automatic layout)
   → revert: two-step confirm → callServerTool(discard_file_changes) → refresh
@@ -71,5 +72,5 @@ useApp() completes the ui/initialize handshake
 - [x] `npm run smoke`: all 20 assertions pass (tool list, status parsing, diff content and
       numstat, confirmation guard, path-escape refusal, post-revert status, resource mime and content)
 - [x] Manifest mirror validation (per the host validator rules): id/title/server/resourceUri/availability all valid
-- [ ] In-app verification (surface appears in the sidebar, webview handshake, callServerTool
-      routed to the plugin server) — requires a manual install and trial
+- [x] In-app verification against ZCode 3.16.2 (surface appears in the session sidebar, webview
+      handshake, callServerTool routed to the plugin server)
