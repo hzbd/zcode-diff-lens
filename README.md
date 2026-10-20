@@ -1,7 +1,11 @@
 # zcode-diff-lens
 
-Local dev marketplace repository for **diff-lens**, a ZCode plugin: a Cursor-style git change
-review panel (cascading status tree + inline Monaco diff).
+Local dev marketplace repository for **diff-lens**, a ZCode plugin:
+Cursor-style git change review in a session side panel — cascading status tree with
+per-folder badges, inline Monaco diff (single- or dual-pane), per-file revert, and
+one-click hand-off to the agent.
+
+Verified against **ZCode 3.16.2**.
 
 ## Repository layout
 
