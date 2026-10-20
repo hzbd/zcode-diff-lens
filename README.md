@@ -18,8 +18,12 @@ install steps — lives in [diff-lens/README.md](./diff-lens/README.md).
 
 ## Install from GitHub
 
-Open **Plugin Marketplace → Add → Add Plugin Marketplace**, paste
-`https://github.com/hzbd/zcode-diff-lens`, then **Personal → diff-lens → Diff Lens → Install**.
+Open **Plugin Marketplace → Add → Add Plugin Marketplace**, paste one of the sources below,
+then **Personal → diff-lens → Diff Lens → Install**:
+
+- HTTPS: `https://github.com/hzbd/zcode-diff-lens`
+- SSH: `git@github.com:hzbd/zcode-diff-lens.git` — usually faster over international links,
+  but requires GitHub access configured first (an SSH key added to your GitHub account)
 
 ## License
 
