@@ -2,6 +2,7 @@
   "name": "diff-lens",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Build orchestration for the diff-lens ZCode plugin (server bundle + web panel).",
   "scripts": {

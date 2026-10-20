@@ -27,3 +27,7 @@ npm run smoke    # host-free end-to-end tests
 4. Update flow: change source → `npm run build` → refresh in the marketplace page → update the plugin.
 
 Manage installed plugins under **Settings → Plugins**.
+
+## License
+
+[MIT](./LICENSE)
