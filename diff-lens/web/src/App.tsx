@@ -12,11 +12,11 @@ import { buildTree, countByStatus, defaultExpanded } from "./gitTree";
 import { DiffTree } from "./components/DiffTree";
 import { DiffView } from "./components/DiffView";
 
-const POLL_MS = 1000;
+const POLL_MS = 3000;
 
 export function App() {
   const { app, isConnected, error: connError } = useApp({
-    appInfo: { name: "diff-lens-panel", version: "0.1.5" },
+    appInfo: { name: "diff-lens-panel", version: "0.1.6" },
     capabilities: {},
   });
   const theme = useDocumentTheme();
