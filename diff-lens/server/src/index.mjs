@@ -122,7 +122,7 @@ function truncateSide(text) {
   };
 }
 
-const server = new McpServer({ name: "diff-lens", version: "0.1.4" });
+const server = new McpServer({ name: "diff-lens", version: "0.1.5" });
 
 server.registerTool(
   "git_status",
