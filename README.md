@@ -1,6 +1,6 @@
 # zcode-diff-lens
 
-Workspace for `diff-lens`, a ZCode plugin: a Cursor-style git change review panel (cascading status tree + inline Monaco diff).
+Workspace for `diff-lens`, a ZCode plugin: a Cursor-style git change review panel (cascading status tree + inline Monaco diff). Verified against **ZCode 3.16.2**.
 
 ## Repository layout
 

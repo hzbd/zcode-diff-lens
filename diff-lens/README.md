@@ -2,6 +2,9 @@
 
 A Cursor-style git change review panel for the ZCode session sidebar.
 
+> **Verified against ZCode 3.16.2** (build 3.16.2.8769). `ui.surfaces` / MCP Apps are
+> experimental — behavior on other ZCode versions is unverified.
+
 - **Cascading status tree**: per-file markers for untracked / added / modified / deleted / renamed / conflicted; folders are colored by their "worst" status and show a change-count badge, so collapsed folders still reveal where the changes are.
 - **Inline diff**: Monaco Diff Editor, inline red/green view by default (switchable to side-by-side), comparing HEAD against the working tree.
 - **Per-file revert**: one click after a two-step confirmation discards all changes of that file (including staged ones; irreversible).
