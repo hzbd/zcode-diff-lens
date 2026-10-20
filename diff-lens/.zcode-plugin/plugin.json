@@ -1,0 +1,32 @@
+{
+  "name": "diff-lens",
+  "version": "0.1.0",
+  "description": "Cursor-style git change review in a session side panel: cascading status tree with per-folder badges, inline Monaco diff (single- or dual-pane), per-file revert, and one-click hand-off to the agent.",
+  "author": { "name": "eddie" },
+  "license": "MIT",
+  "mcpServers": {
+    "diff-lens": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server/dist/index.mjs"],
+      "cwd": "${ZCODE_PROJECT_DIR}",
+      "env": {
+        "DIFF_LENS_PLUGIN_ROOT": "${CLAUDE_PLUGIN_ROOT}",
+        "DIFF_LENS_PROJECT_DIR": "${ZCODE_PROJECT_DIR}"
+      }
+    }
+  },
+  "ui": {
+    "surfaces": [
+      {
+        "id": "diff-lens",
+        "title": {
+          "en-US": "Diff Lens",
+          "zh-CN": "Diff Lens 变更审查"
+        },
+        "server": "diff-lens",
+        "resourceUri": "ui://diff-lens/panel",
+        "availability": "session"
+      }
+    ]
+  }
+}
