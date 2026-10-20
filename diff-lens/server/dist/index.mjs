@@ -33948,7 +33948,7 @@ function truncateSide(text) {
     truncated: true
   };
 }
-var server = new McpServer({ name: "diff-lens", version: "0.1.2" });
+var server = new McpServer({ name: "diff-lens", version: "0.1.3" });
 server.registerTool(
   "git_status",
   {
@@ -33966,7 +33966,16 @@ server.registerTool(
     );
     const { branch, upstream, ahead, behind, entries } = parsePorcelain(out);
     return {
-      structuredContent: { isRepo: true, root, branch, upstream, ahead, behind, entries }
+      structuredContent: {
+        isRepo: true,
+        root,
+        projectName: path.basename(root),
+        branch,
+        upstream,
+        ahead,
+        behind,
+        entries
+      }
     };
   }
 );

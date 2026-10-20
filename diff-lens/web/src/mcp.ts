@@ -21,6 +21,7 @@ export interface GitEntry {
 export interface GitStatus {
   isRepo: boolean;
   root: string | null;
+  projectName?: string;
   branch: string | null;
   upstream: string | null;
   ahead: number;

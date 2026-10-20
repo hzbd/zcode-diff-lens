@@ -53,6 +53,11 @@ body { background: var(--bg); color: var(--fg); font-size: 12px; }
   border-bottom: 1px solid var(--border);
   flex: none;
 }
+.panel-title {
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--accent);
+}
 .branch {
   font-weight: 600; white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis; max-width: 45%;

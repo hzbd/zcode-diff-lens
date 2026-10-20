@@ -16,7 +16,7 @@ const POLL_MS = 5000;
 
 export function App() {
   const { app, isConnected, error: connError } = useApp({
-    appInfo: { name: "diff-lens-panel", version: "0.1.2" },
+    appInfo: { name: "diff-lens-panel", version: "0.1.3" },
     capabilities: {},
   });
   const theme = useDocumentTheme();
@@ -149,6 +149,9 @@ export function App() {
   return (
     <div className="app">
       <header className="topbar">
+        <span className="panel-title" title={status?.projectName ?? undefined}>
+          {status?.projectName ? `${status.projectName} - diff-lens` : "diff-lens"}
+        </span>
         <span className="branch" title={status?.root ?? undefined}>
           {status?.isRepo
             ? `⑂ ${status.branch ?? "(no branch)"}${
