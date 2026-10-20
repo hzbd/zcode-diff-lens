@@ -28,6 +28,9 @@ npm run smoke    # host-free end-to-end tests
 
 Manage installed plugins under **Settings → Plugins**.
 
+Tip: the native right-side code preview pane is host UI, independent of this plugin — close it
+once via its title-bar button and the layout persists (stays closed until you click a file).
+
 ## License
 
 [MIT](./LICENSE)

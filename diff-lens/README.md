@@ -69,6 +69,12 @@ docs/DESIGN.md                   design doc (incl. errata against the original p
 - `node` must be on PATH (true on this machine). For end-user distribution, follow the ios-simulator plugin and run through ZCode Helper (`ELECTRON_RUN_AS_NODE=1`).
 - `ui.surfaces` / MCP Apps are experimental; ZCode or ext-apps SDK upgrades may introduce incompatibilities — test against the target version.
 
+## Host tip: hide the native code preview pane
+
+The right-side code preview pane ("Code viewer") is ZCode host UI, independent of this plugin.
+If you prefer browsing without it, close it once via the close button in its title bar — the
+file-manager layout persists across restarts, so it stays closed until you click a file.
+
 ## License
 
 [MIT](./LICENSE)
